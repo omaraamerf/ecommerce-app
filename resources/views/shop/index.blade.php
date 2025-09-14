@@ -20,7 +20,21 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $product->title }}</h5>
                         <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->description, 100) }}</p>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
+
+                        {{-- START: Added Comments Section --}}
+                        <div class="mt-2">
+                            <h6 class="card-subtitle mb-2 text-muted">التعليقات ({{ $product->comments->count() }})</h6>
+                            <ul class="list-group list-group-flush" style="font-size: 0.9rem;">
+                                @forelse ($product->comments as $comment)
+                                    <li class="list-group-item px-0 py-1">{{ $comment->body }}</li>
+                                @empty
+                                    <li class="list-group-item px-0 py-1 text-muted">لا توجد تعليقات.</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                        {{-- END: Added Comments Section --}}
+
+                        <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                             <div class="btn-group">
                                 <a href="#" class="btn btn-sm btn-outline-secondary">عرض التفاصيل</a>
                                 <a href="#" class="btn btn-sm btn-primary">أضف للسلة</a>
