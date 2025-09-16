@@ -13,8 +13,8 @@ class HomeController extends Controller
     {
 
         $products = Product::with(['category', 'comments'])
-            ->where('status', ProductStatus::PUBLISHED)
-            ->where('is_active', true)
+            // ->where('status', ProductStatus::PUBLISHED)
+            // ->where('is_active', true)
             ->latest()
             ->paginate(9);
 

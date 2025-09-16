@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Enums\ProductStatus;
 use App\Models\Category;
+use App\Models\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,5 +22,10 @@ class Product extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable');
+    }
+    protected static function booted(): void
+    {
+
+        static::addGlobalScope(new ActiveScope);
     }
 }
