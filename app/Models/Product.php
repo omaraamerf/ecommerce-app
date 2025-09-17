@@ -23,9 +23,9 @@ class Product extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
-    protected static function booted(): void
-    {
+    // protected static function booted(): void
+    // {
 
-        static::addGlobalScope(new ActiveScope);
-    }
+    //     static::addGlobalScope(new ActiveScope);
+    // }
 }
