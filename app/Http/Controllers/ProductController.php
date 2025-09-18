@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\Events\ProductViewed;
 class ProductController extends Controller
 {
     use AuthorizesRequests;
@@ -41,8 +42,10 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+
         $this->authorize('view', $product);
         $productWithCategory = $this->productService->loadProductCategory($product);
+        event(new ProductViewed($product));
         return view('products.show', ['product' => $productWithCategory]);
     }
 
